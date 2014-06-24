@@ -18,6 +18,7 @@ import com.jjunos.manga.utils.CopyUtils;
  * 3. Deal with naming conventions
  * 4. Move interal pages
  * 5. Remove artwork (Sometimes pages starting with ZZZ, others with b selections. ie. chap1_p23.jpg vs. chap1_p23b
+ * 6. Make option to enforce compression standard to zip or leave as is.
  * 
  * @author jlee
  *

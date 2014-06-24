@@ -1,0 +1,1 @@
+java -cp target/FileCleaner-SNAPSHOT.jar:/home/jlee/.m2/repository/commons-lang/commons-lang/2.5/commons-lang-2.5.jar:/home/jlee/.m2/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar:/home/jlee/.m2/repository/commons-io/commons-io/2.4/commons-io-2.4.jar  com.jjunos.manga.core.Runner
