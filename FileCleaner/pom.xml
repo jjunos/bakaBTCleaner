@@ -6,12 +6,18 @@
     <version>SNAPSHOT</version>
   </parent>
   <artifactId>FileCleaner</artifactId>
-  
-  <dependencies>
-  		<dependency>
+
+	<dependencies>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.2</version>
 		</dependency>
-  </dependencies>
+		<dependency>
+			<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.3</version>
+		</dependency>
+	</dependencies>
 </project>
