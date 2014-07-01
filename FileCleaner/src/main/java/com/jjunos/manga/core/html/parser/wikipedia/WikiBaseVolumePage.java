@@ -1,10 +1,7 @@
 package com.jjunos.manga.core.html.parser.wikipedia;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -13,9 +10,23 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-public class WikipediaHtmlParser {
+/**
+ * Represents the base volume page for a manga.
+ * 
+ * Should be structured:
+ * 
+ * <h2> Volume List </h2> 			--> Selector : h2 span[id=Volume_list] 
+ * <h3> Volume Information </h3> 	--> Selector : h3 span[class=mw-headline]
+ * <div> Volume Link </div>  		--> Selector : a href
+ * 
+ * Note: Volume List should be numbers separated by a - (dash)
+ * 
+ * @author jlee
+ *
+ */
+public class WikiBaseVolumePage {
 
-	public void test() {
+	public void parse() {
 		try {
 			
 			Document wiki = Jsoup.connect("http://en.wikipedia.org/wiki/List_of_Hajime_no_Ippo_manga_volumes").get();
@@ -47,9 +58,9 @@ public class WikipediaHtmlParser {
 				String html =  parse.select( "a").attr( "href") ;
 				System.out.println("DIV PARSE: " + parse.select( "a").attr( "href") );
 				
-				Connection connect = Jsoup.connect( "http://en.wikipedia.org" + html );
-				
-				System.out.println("Final: " + connect.get() );
+//				Connection connect = Jsoup.connect( "http://en.wikipedia.org" + html );
+//				
+//				System.out.println("Final: " + connect.get() );
 				
 //				Element parent = e.parent();
 //				// search for the volume sub links
@@ -59,44 +70,23 @@ public class WikipediaHtmlParser {
 				
 //				System.out.println("What is this :  " + select2 );
 			}
-			
-			
-//			Element volumes = volumeHeader.first();
-//			
-//			Iterator<Element> iterator = volumeHeader.iterator();
-//			while( iterator.hasNext() ) {
-//				Element e = iterator.next();
-//				
-//				System.out.println( "Element : " + e );
-//			}
-			
-//			System.out.println("Volume element : " + volumes );
-//			Node wikiHolder = volumes.parentNode();
-//			
-//			System.out.println("Node holder : " + wikiHolder );
-//			
-//			Map<String, Element> allVols = new HashMap<String, Element>();
-//			
-//			Node sibling = null;
-//			
-//			int count = 0;
-//			do {
-//				sibling = wikiHolder.nextSibling();
-//				System.out.println("Found sibling: " + sibling );
-//				count++;
-//				wikiHolder = wikiHolder.nextSibling(); 
-//			} while( sibling != null && count < 6 );
-//			
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void main(String[] args) {
-		WikipediaHtmlParser parser = new WikipediaHtmlParser();
+	public static String getFirstNumberSeparatedByDash( String s ) {
+		int i = s.indexOf( '-' );
+		if( i < 0 ) {
+			return null;
+		}
 		
-		parser.test();
+	}
+	
+	public static void main(String[] args) {
+		WikiBaseVolumePage b = new WikiBaseVolumePage();
+		
+		b.parse() ;
 	}
 }
